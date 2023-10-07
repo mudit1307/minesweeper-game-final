@@ -115,17 +115,6 @@
                 clickBait(square);
             }
 
-            // square.oncontextmenue = function(e) {
-            //     e.preventDefalut();
-            //     console.log("left click")
-            //     addFlag(square);
-            // }
-            // square.addEventListener("click", function (event) {
-            //     if (event.button === 2) {
-            //         console.log("right click ");
-            //     }
-            // })
-
             square.addEventListener("contextmenu", function (event) {
                 event.preventDefault();
                 addFlag(square);
@@ -163,6 +152,7 @@
     function callRecursion(i) {
         // let i = square.getAttribute("id");
         // console.log(square);
+
         const square = document.getElementById(i);
         console.log(i);
         if(square.classList.contains("flag") )
@@ -242,6 +232,8 @@
                 if (!rightEdge && i > 9 && squares[i - width + 1].classList.contains("bomb")) total++;
                 if (!rightEdge && i < 90 && squares[i + width + 1].classList.contains("bomb")) total++;
 
+
+                
                 squares[i].setAttribute('data', total);
                 if (total > 0) {
                     squares[i].innerHTML = total;
