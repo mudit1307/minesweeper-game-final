@@ -18,9 +18,7 @@ function createBoard() {
       shuffledArray[r] = "bomb";
     }
   }
-  console.log(shuffledArray);
-
-// console.log(randomBombsIndex);
+//   console.log(shuffledArray);
 
   //creating squares
   for (let i = 0; i < width * width; i++) {
@@ -30,12 +28,6 @@ function createBoard() {
     square.classList.add(shuffledArray[i]);
     grid.appendChild(square);
     squares.push(square);
-
-    //display bobms in grid - for testing purposes
-    // if(shuffledArray[i] == 'bomb')
-    // {
-    //     squares[i].innerHTML='💣';
-    // }
 
     //square normal click functionality
     square.onclick = () => {
@@ -55,6 +47,7 @@ createBoard();
 
 
 function calculateSquareValues() {
+    //add numbers
   for (let i = 0; i < width * width; i++) {
     //checks number of bobms and display count more than 0;
 
@@ -97,10 +90,6 @@ function calculateSquareValues() {
 
       squares[i].setAttribute("data", total);
 
-      // if (total > 0) {
-      //     squares[i].innerHTML = total;
-      //     // squares[i].style.border="1px solid gray";
-      // }
     }
   }
 }
@@ -157,6 +146,29 @@ function addFlag(square) {
       flag.innerHTML = flags;
     }
   }
+}
+
+function addFlag(square)
+{
+    if(isGameOver) return
+    if(!square.classList.contains('checked') && (flags <bombAmount))
+    {
+        if(!square.classList.contains('flag'))
+        {
+            square.classList.add("flag");
+            square.innerHTML=' 🚩';
+            flags++;
+            flagCount.innerHTML=bombAmount-flags;
+            checkForWin()
+        }
+        else
+        {
+            square.classList.remove("flag");
+            square.innerHTML=' ';
+            flags--;
+            flagCount.innerHTML=bombAmount-flags;
+        }
+    }
 }
 
 
@@ -221,6 +233,7 @@ function gameOver() {
     if (square.classList.contains("bomb")) {
         square.innerHTML = "💣";
       square.style.backgroundColor="red";
+      square.style.border="none";
     }
   })
 }
