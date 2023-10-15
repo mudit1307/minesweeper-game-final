@@ -1,2 +1,7 @@
-# minesweeper-game-final
-Minesweeper is a simple, yet challenging, puzzle game where players explore a grid to locate and disarm hidden mines without striking one, using clues and logic to navigate the board.
+# Minesweeper Game
+
+**Game Rules:**
+
+- If you click on a bomb, the game is over.
+- Win the game by correctly flagging all the bombs.
+- Each number on the grid indicates the precise count of bombs in its immediate 8-neighbor boxes.
