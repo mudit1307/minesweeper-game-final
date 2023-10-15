@@ -11,13 +11,14 @@ let isGameOver = false;
 function createBoard() {
   let shuffledArray = Array(width * width).fill("valid");
   let randomBombsIndex = [];
-  while (randomBombsIndex.length <= 20) {
+  while (randomBombsIndex.length < 20) {
     let r = Math.floor(Math.random() * (99 - 0 + 1)) + 0;
     if (!randomBombsIndex.includes(r)) {
       randomBombsIndex.push(r);
       shuffledArray[r] = "bomb";
     }
   }
+  console.log(randomBombsIndex.length);
 //   console.log(shuffledArray);
 
   //creating squares
@@ -38,6 +39,7 @@ function createBoard() {
     square.addEventListener("contextmenu", function (event) {
       event.preventDefault();
       addFlag(square);
+    //   console.log("right click")
     });
   }
   //add numbers to grid
@@ -129,9 +131,10 @@ function clickBait(square) {
 //add flag with right click
 function addFlag(square) {
   // console.log("add flag");
+//   console.log(square);
   if (isGameOver) return;
 
-  if (!square.classList.contains("checked") && flags < bombAmount) {
+  if (!square.classList.contains("checked") && flags > 0) {
 
     if (!square.classList.contains("flag")) {
       square.classList.add("flag");
@@ -148,28 +151,29 @@ function addFlag(square) {
   }
 }
 
-function addFlag(square)
-{
-    if(isGameOver) return
-    if(!square.classList.contains('checked') && (flags <bombAmount))
-    {
-        if(!square.classList.contains('flag'))
-        {
-            square.classList.add("flag");
-            square.innerHTML=' 🚩';
-            flags++;
-            flagCount.innerHTML=bombAmount-flags;
-            checkForWin()
-        }
-        else
-        {
-            square.classList.remove("flag");
-            square.innerHTML=' ';
-            flags--;
-            flagCount.innerHTML=bombAmount-flags;
-        }
-    }
-}
+    //add flag with right click
+    // function addFlag(square)
+    // {
+    //     if(isGameOver) return
+    //     if(!square.classList.contains('checked') && (flags <bombAmount))
+    //     {
+    //         if(!square.classList.contains('flag'))
+    //         {
+    //             square.classList.add("flag");
+    //             square.innerHTML=' 🚩';
+    //             flags++;
+    //             flagCount.innerHTML=bombAmount-flags;
+    //             checkForWin()
+    //         }
+    //         else
+    //         {
+    //             square.classList.remove("flag");
+    //             square.innerHTML=' ';
+    //             flags--;
+    //             flagCount.innerHTML=bombAmount-flags;
+    //         }
+    //     }
+    // }
 
 
 // check neighboring squares once square is clicked
@@ -250,6 +254,7 @@ function checkForWin() {
     }
     if (matches == bombAmount) {
       console.log("YOU WIN!");
+      alert("YOU WIN");
       isGameOver = true;
     }
   }
